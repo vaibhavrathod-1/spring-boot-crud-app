@@ -71,5 +71,5 @@ jobs:
       run: |
         aws eks --region us-east-2 update-kubeconfig --name timepass
         helm upgrade --recreate-pods -i sb sbapp
-        export SERVICE_IP=$(kubectl get svc --namespace default octo-app --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
-        echo http://$SERVICE_IP:80
+        export SERVICE_IP=$(kubectl get svc --namespace default sb --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+        echo http://$SERVICE_IP:9191
